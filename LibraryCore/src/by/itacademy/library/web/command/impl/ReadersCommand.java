@@ -4,7 +4,7 @@ import by.itacademy.library.VO.ReaderVO;
 import by.itacademy.library.entities.Reader;
 import by.itacademy.library.service.ReaderService;
 import by.itacademy.library.service.impl.ReaderServiceImpl;
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.web.command.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class ReadersController implements Controller {
+public class ReadersCommand implements Command {
     private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override

@@ -4,7 +4,7 @@ import by.itacademy.library.VO.BookVO;
 import by.itacademy.library.entities.Book;
 import by.itacademy.library.service.BookService;
 import by.itacademy.library.service.impl.BookServiceImpl;
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.web.command.Command;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class SearchCatalogController implements Controller {
+public class SearchCatalogCommand implements Command {
     private BookService bookService = BookServiceImpl.getInstance();
 
     @Override

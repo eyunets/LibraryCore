@@ -8,7 +8,7 @@ import by.itacademy.library.service.BookService;
 import by.itacademy.library.service.impl.AuthorServiceImpl;
 import by.itacademy.library.service.impl.BookAuthorServiceImpl;
 import by.itacademy.library.service.impl.BookServiceImpl;
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.web.command.Command;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class EditBookController implements Controller {
+public class EditBookCommand implements Command {
     private BookService bookService = BookServiceImpl.getInstance();
     private AuthorService authorService = AuthorServiceImpl.getInstance();
     private BookAuthorService bookAuthorService = BookAuthorServiceImpl.getInstance();

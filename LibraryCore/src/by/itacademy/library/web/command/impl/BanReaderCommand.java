@@ -3,7 +3,7 @@ package by.itacademy.library.web.command.impl;
 import by.itacademy.library.entities.Reader;
 import by.itacademy.library.service.ReaderService;
 import by.itacademy.library.service.impl.ReaderServiceImpl;
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.web.command.Command;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class BanReaderController implements Controller {
+public class BanReaderCommand implements Command {
     private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override

@@ -2,7 +2,7 @@ package by.itacademy.library.web.command.impl;
 
 import by.itacademy.library.service.ReaderService;
 import by.itacademy.library.service.impl.ReaderServiceImpl;
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.web.command.Command;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class ErrorController implements Controller {
+public class ErrorCommand implements Command {
     ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override

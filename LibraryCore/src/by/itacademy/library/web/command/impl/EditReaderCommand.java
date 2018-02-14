@@ -3,7 +3,7 @@ package by.itacademy.library.web.command.impl;
 import by.itacademy.library.entities.Reader;
 import by.itacademy.library.service.ReaderService;
 import by.itacademy.library.service.impl.ReaderServiceImpl;
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.web.command.Command;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
 
-public class EditReaderController implements Controller {
+public class EditReaderCommand implements Command {
     private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override

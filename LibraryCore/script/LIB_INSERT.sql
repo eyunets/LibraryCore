@@ -21,8 +21,8 @@ INSERT INTO BOOKS_AUTHORS
     (4, 3),
     (5, 4);
     
-INSERT INTO LIBRARIANS (SURNAME, NAME, SECOND_NAME) VALUES
-('Юнец',  'Евгений', 'Олегович');
+INSERT INTO LIBRARIANS (SURNAME, NAME, SECOND_NAME,EMAIL, PASSWORD) VALUES
+('Юнец',  'Евгений', 'Олегович' , 'eyunets@outlook.com', 'eyunets123');
 
 INSERT INTO READERS (SURNAME, NAME, SECOND_NAME, BIRTHDAY) VALUES
 ('Агарков',  'Михаил', 'Дмитриевич', '1994-06-07');

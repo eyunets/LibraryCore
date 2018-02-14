@@ -1,6 +1,6 @@
 package by.itacademy.library.web.command.enums;
 
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.web.command.Command;
 import by.itacademy.library.web.command.impl.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,33 +10,33 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CommandType {
 
-    ADD_BOOK("admin/addBook.jsp", "addbook", new AddBookController()),
-    ADD_AUTHOR("", "addauthor", new AddAuthorController()),
-    CATALOG("catalog/main.jsp", "catalog", new CatalogController()),
-    SEARCH_CATALOG("catalog/main.jsp", "searchcatalog", new SearchCatalogController()),
-    BAN_READER_AJAX("", "banReader", new BanReaderController()),
-    BOOK("catalog/book.jsp", "book", new BookController()),
-    EDIT_BOOK("admin/editBook.jsp", "editBook", new EditBookController()),
-    DELETE_BOOK("catalog/book.jsp", "deleteBook", new DeleteBookController()),
-    EDIT_READER("cabinet/editReader.jsp", "editreader", new EditReaderController()),
-    ERROR("error/error.jsp", "error", new ErrorController()),
-    LOGIN("login.jsp", "login", new LoginController()),
-    LOGIN_LIB("login.jsp", "loginlib", new LoginLibController()),
-    LOGOUT("", "logout", new LogoutController()),
-    MAIN("main/main.jsp", "main", new MainController()),
-    MY_BOOKS("cabinet/myBooks.jsp", "mybooks", new MyBooksController()),
-    NOT_FOUND("error/404.jsp", "404", new ErrorController()),
-    ABOUT("about/main.jsp", "about", new AboutController()),
-    READERS("admin/readers.jsp", "readers", new ReadersController()),
-    RESERVE_BOOK_AJAX("", "reserveBook", new ReserveBookController()),
-    RETURN_BOOK_AJAX("", "returnBook", new ReturnBookController()),
-    SIGN_UP("login.jsp", "signup", new SignUpController());
+    ADD_BOOK("admin/addBook.jsp", "addbook", new AddBookCommand()),
+    ADD_AUTHOR("", "addauthor", new AddAuthorCommand()),
+    CATALOG("catalog/main.jsp", "catalog", new CatalogCommand()),
+    SEARCH_CATALOG("catalog/main.jsp", "searchcatalog", new SearchCatalogCommand()),
+    BAN_READER_AJAX("", "banReader", new BanReaderCommand()),
+    BOOK("catalog/book.jsp", "book", new BookCommand()),
+    EDIT_BOOK("admin/editBook.jsp", "editBook", new EditBookCommand()),
+    DELETE_BOOK("catalog/book.jsp", "deleteBook", new DeleteBookCommand()),
+    EDIT_READER("cabinet/editReader.jsp", "editreader", new EditReaderCommand()),
+    ERROR("error/error.jsp", "error", new ErrorCommand()),
+    LOGIN("login.jsp", "login", new LoginCommand()),
+    LOGIN_LIB("login.jsp", "loginlib", new LoginLibCommand()),
+    LOGOUT("", "logout", new LogoutCommand()),
+    MAIN("main/main.jsp", "main", new MainCommand()),
+    MY_BOOKS("cabinet/myBooks.jsp", "mybooks", new MyBooksCommand()),
+    NOT_FOUND("error/404.jsp", "404", new ErrorCommand()),
+    ABOUT("about/main.jsp", "about", new AboutCommand()),
+    READERS("admin/readers.jsp", "readers", new ReadersCommand()),
+    RESERVE_BOOK_AJAX("", "reserveBook", new ReserveBookCommand()),
+    RETURN_BOOK_AJAX("", "returnBook", new ReturnBookCommand()),
+    SIGN_UP("login.jsp", "signup", new SignUpCommand());
 
 
 
     private String pagePath;
     private String pageName;
-    private Controller controller;
+    private Command controller;
 
     /**
      * @param page page name

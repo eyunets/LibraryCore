@@ -1,9 +1,9 @@
 package by.itacademy.library.web.command.impl;
 
-import by.itacademy.library.entities.Author;
-import by.itacademy.library.service.AuthorService;
-import by.itacademy.library.service.impl.AuthorServiceImpl;
-import by.itacademy.library.web.command.Controller;
+import by.itacademy.library.entities.Reader;
+import by.itacademy.library.service.ReaderService;
+import by.itacademy.library.service.impl.ReaderServiceImpl;
+import by.itacademy.library.web.command.Command;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,31 +14,39 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
-public class AddAuthorController implements Controller {
-    private AuthorService authorService = AuthorServiceImpl.getInstance();
+public class SignUpCommand implements Command {
+    private ReaderService readerService = ReaderServiceImpl.getInstance();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
-        Author author = new Author();
         boolean validData = true;//flag to indicate whether all input data is valid
+        Reader reader = new Reader();
         if (req.getParameter("surname").matches("^[À-ß¨]([a-ÿ¸]){0,29}$")) {
-            author.setSurname(req.getParameter("surname"));
-        } else {
-            validData = false;
-        }
-        if (req.getParameter("surname").matches("^[À-ß¨]([a-ÿ¸]){0,29}$")) {
-            author.setSurname(req.getParameter("surname"));
+            reader.setSurname(req.getParameter("surname"));
         } else {
             validData = false;
         }
         if (req.getParameter("name").matches("^[À-ß¨]([a-ÿ¸]){0,29}$")) {
-            author.setName(req.getParameter("name"));
+            reader.setName(req.getParameter("name"));
         } else {
             validData = false;
         }
         if (req.getParameter("secondname").matches("^[À-ß¨]([a-ÿ¸]){0,29}$")) {
-            author.setSecondName(req.getParameter("secondname"));
+            reader.setSecondName(req.getParameter("secondname"));
+        } else {
+            validData = false;
+        }
+        if (req.getParameter("email").matches("^([a-z0-9_\\.-]+\\@[\\da-z\\.-]+\\.[a-z\\.]{2,6})$")) {
+            Reader emreader = readerService.getByLogin(req.getParameter("email"));
+            if (emreader != null) {
+                validData = false;
+            }
+            reader.setEmail(req.getParameter("email"));
+        } else {
+            validData = false;
+        }
+        if (req.getParameter("password").matches(".{6,30}")) {
+            reader.setPassword(req.getParameter("password"));
         } else {
             validData = false;
         }
@@ -46,25 +54,25 @@ public class AddAuthorController implements Controller {
         try {
             birthday = LocalDate.parse(req.getParameter("birthday"));
             if (birthday.compareTo(LocalDate.now().minus(18, ChronoUnit.YEARS)) < 0) {//check whether the author is over 18
-                author.setBirthday(birthday);
+                reader.setBirthday(birthday);
             } else {
                 validData = false;
             }
         } catch (DateTimeParseException e) {
             validData = false;
         }
-
-        if (req.getParameter("country").matches("^[À-ß¨]([a-ÿ¸]){0,29}$")) {
-            author.setCountry(req.getParameter("country"));
-        } else {
-            validData = false;
-        }
+        if (req.getParameter("gender").equals("1"))
+            reader.setGender("male");
+        else if (req.getParameter("gender").equals("2"))
+            reader.setGender("female");
+        else validData = false;
+        reader.setStatus("ACTIVE");
 
         if (validData) {
-            authorService.save(author);
+            readerService.save(reader);
             req.getSession().setAttribute("errorMsg", "");
             String contextPath = req.getContextPath();
-            resp.sendRedirect(contextPath + "/frontController?command=addBook");
+            resp.sendRedirect(contextPath + "/frontController?command=main");
             return;
         } else { //forward user to the same page with error message
             req.getSession().setAttribute("errorMsg", "Invalid data. Please, retry");
